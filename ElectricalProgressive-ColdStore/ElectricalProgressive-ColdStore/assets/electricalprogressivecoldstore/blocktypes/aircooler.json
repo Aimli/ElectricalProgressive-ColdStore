@@ -1,0 +1,134 @@
+{
+  "code": "aircooler",
+  "class": "ColdStoreAirCoolerBlock",
+
+  "behaviors": [
+    {
+      "name": "HorizontalOrientable",
+      "properties": {
+        "dropBlockFace": "north"
+      }
+    }
+  ],
+
+  "variantgroups": [
+    {
+      "code": "side",
+      "loadFromProperties": "abstract/horizontalorientation"
+    }
+  ],
+
+  "creativeinventory": {
+    "general": [ "*-north" ],
+    "electricity": [ "*-north" ]
+  },
+  "blockmaterial": "Metal",
+  "drawtype": "json",
+  "resistance": 4,
+  "lightAbsorption": 0,
+
+  "sideAo": {
+    "all": false
+  },
+
+  "sidesolid": {
+    "all": false
+  },
+
+  "sideopaque": {
+    "all": false
+  },
+
+  "collisionbox": {
+    "x1": 0.0625,
+    "y1": 0.0625,
+    "z1": 0.0625,
+    "x2": 0.9375,
+    "y2": 0.9375,
+    "z2": 0.9375
+  },
+
+  "selectionbox": {
+    "x1": 0.0625,
+    "y1": 0.0625,
+    "z1": 0.03125,
+    "x2": 0.9375,
+    "y2": 1.0,
+    "z2": 0.9375
+  },
+
+  "sounds": {
+    "place": "game:block/chute",
+    "break": "game:block/chute",
+    "hit": "game:block/chute",
+    "walk": "game:walk/stone"
+  },
+
+  "entityClass": "ColdStoreAirCooler",
+  "entityBehaviors": [
+    { "name": "ColdStoreAirCoolerElectric" },
+    { "name": "ElectricalProgressive" }
+  ],
+  "attributes": {
+    "handbook": {
+      "groupBy": [
+        "aircooler-*"
+      ],
+      "extraSections": [
+        {
+          "title": "electricalprogressivecoldstore:block-handbooktitle-aircooler",
+          "text": "electricalprogressivecoldstore:block-handbooktext-aircooler"
+        },
+        {
+          "title": "electricalprogressivecoldstore:aircooler-cooling-behavior-title",
+          "text": "electricalprogressivecoldstore:aircooler-cooling-behavior"
+        }
+      ]
+    },
+
+    "blockEProperties": "all",
+    "facesEProperties": [ "north", "east", "south", "west", "up", "down" ],
+    "maxConsumption": 2744,
+    "wattsPerInteriorBlock": 1,
+    "minimumOperatingPowerRatio": 0.9,
+    "voltage": 128,
+    "maxCurrent": 25.0,
+    "isolated": true,
+    "isolatedEnvironment": true,
+    "minimumTemperature": -50.0,
+    "minimumPerishRate": 0.025,
+    "fullPowerCoolingSeconds": 100.0,
+    "warmingDegreesPerHour": 3.0
+  },
+  "shapeInventory": {
+    "base": "electricalprogressivecoldstore:block/aircooler",
+    "rotateY": 0
+  },
+
+  "shapeByType": {
+    "*-north": {
+      "base": "electricalprogressivecoldstore:block/aircooler",
+      "rotateY": 180
+    },
+
+    "*-east": {
+      "base": "electricalprogressivecoldstore:block/aircooler",
+      "rotateY": 90
+    },
+
+    "*-south": {
+      "base": "electricalprogressivecoldstore:block/aircooler",
+      "rotateY": 0
+    },
+
+    "*-west": {
+      "base": "electricalprogressivecoldstore:block/aircooler",
+      "rotateY": 270
+    }
+  },
+  "textures": {
+    "metal": { "base": "electricalprogressivecoldstore:block/machine-metal" },
+    "dark": { "base": "electricalprogressivecoldstore:block/machine-dark" },
+    "fan": { "base": "electricalprogressivecoldstore:block/fan" }
+  }
+}

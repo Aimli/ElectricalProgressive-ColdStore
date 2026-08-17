@@ -1,0 +1,136 @@
+{
+  "code": "refrigerantpipe",
+  "class": "ColdStoreRefrigerantPipe",
+  "entityClass": "Generic",
+
+  "behaviors": [
+    {
+      "name": "Coverable"
+    }
+  ],
+
+  "entityBehaviors": [
+    {
+      "name": "Coverable"
+    }
+  ],
+
+  "attributes": {
+    "handbook": {
+      "extraSections": [
+        {
+          "title": "electricalprogressivecoldstore:block-handbooktitle-refrigerantpipe",
+          "text": "electricalprogressivecoldstore:block-handbooktext-refrigerantpipe"
+        }
+      ]
+    }
+  },
+
+  "creativeinventory": {
+    "general": [
+      "*"
+    ],
+    "electricity": [
+      "*"
+    ]
+  },
+
+  "blockmaterial": "Metal",
+  "drawtype": "json",
+
+  "resistance": 3,
+  "lightAbsorption": 0,
+
+  "sideAo": {
+    "all": false
+  },
+
+  "sidesolid": {
+    "all": false
+  },
+
+  "sideopaque": {
+    "all": false
+  },
+
+  "shape": {
+    "base": "electricalprogressivecoldstore:block/refrigerantpipe"
+  },
+
+  "shapeInventory": {
+    "base": "electricalprogressivecoldstore:block/refrigerantpipe",
+    "selectiveElements": [
+      "core",
+      "east",
+      "west"
+    ]
+  },
+
+  "textures": {
+    "metal": {
+      "base": "electricalprogressivecoldstore:block/pipe"
+    }
+  },
+
+  "sounds": {
+    "place": "game:block/chute",
+    "break": "game:block/chute",
+    "hit": "game:block/chute",
+    "walk": "game:walk/stone"
+  },
+
+  "materialDensity": 2700,
+
+  "guiTransform": {
+    "rotation": {
+      "x": 20,
+      "y": -45,
+      "z": 0
+    },
+    "origin": {
+      "x": 0.5,
+      "y": 0.5,
+      "z": 0.5
+    },
+    "scale": 1.4
+  },
+
+  "groundTransform": {
+    "rotation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "origin": {
+      "x": 0.5,
+      "y": 0.5,
+      "z": 0.5
+    },
+    "scale": 1
+  },
+
+  "tpHandTransform": {
+    "translation": {
+      "x": -0.7,
+      "y": -0.5,
+      "z": -0.3
+    },
+    "rotation": {
+      "x": 0,
+      "y": 90,
+      "z": -80
+    },
+    "origin": {
+      "x": 0.5,
+      "y": 0.5,
+      "z": 0.5
+    },
+    "scale": 0.7
+  },
+  "sounds": {
+    "place": "game:block/chute",
+    "break": "game:block/chute",
+    "hit": "game:block/chute",
+    "walk": "game:walk/stone"
+  }
+}

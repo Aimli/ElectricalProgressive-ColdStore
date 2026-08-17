@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ElectricalProgressive-ColdStore/CakeBuild/CakeBuild.csproj" />
+  <Project Path="ElectricalProgressive-ColdStore/ElectricalProgressive-ColdStore/ElectricalProgressive-ColdStore.csproj" />
+</Solution>

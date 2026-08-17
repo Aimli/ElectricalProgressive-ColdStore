@@ -1,0 +1,116 @@
+{
+  "code": "condensingunit",
+
+  "behaviors": [
+    {
+      "name": "HorizontalOrientable",
+      "properties": {
+        "dropBlockFace": "north"
+      }
+    }
+  ],
+
+  "variantgroups": [
+    {
+      "code": "side",
+      "loadFromProperties": "abstract/horizontalorientation"
+    }
+  ],
+
+  "attributes": {
+    "handbook": {
+      "groupBy": [
+        "condensingunit-*"
+      ],
+      "extraSections": [
+        {
+          "title": "electricalprogressivecoldstore:block-handbooktitle-condensingunit",
+          "text": "electricalprogressivecoldstore:block-handbooktext-condensingunit"
+        }
+      ]
+    }
+  },
+
+  "creativeinventory": {
+    "general": [
+      "*-north"
+    ],
+    "electricity": [
+      "*-north"
+    ]
+  },
+  "blockmaterial": "Metal",
+  "drawtype": "json",
+  "resistance": 5,
+  "lightAbsorption": 0,
+
+  "sideAo": {
+    "all": false
+  },
+
+  "sidesolid": {
+    "all": false
+  },
+
+  "sideopaque": {
+    "all": false
+  },
+
+  "collisionbox": {
+    "x1": 0.0625,
+    "y1": 0,
+    "z1": 0.0625,
+    "x2": 0.9375,
+    "y2": 1,
+    "z2": 0.9375
+  },
+
+  "selectionbox": {
+    "x1": 0.0625,
+    "y1": 0,
+    "z1": 0.0625,
+    "x2": 0.9375,
+    "y2": 1,
+    "z2": 0.9375
+  },
+
+  "sounds": {
+    "place": "game:block/chute",
+    "break": "game:block/chute",
+    "hit": "game:block/chute",
+    "walk": "game:walk/stone"
+  },
+
+  "entityClass": "ColdStoreCondensingUnit",
+  "shapeInventory": {
+    "base": "electricalprogressivecoldstore:block/condensingunit",
+    "rotateY": 0
+  },
+
+  "shapeByType": {
+    "*-north": {
+      "base": "electricalprogressivecoldstore:block/condensingunit",
+      "rotateY": 180
+    },
+
+    "*-east": {
+      "base": "electricalprogressivecoldstore:block/condensingunit",
+      "rotateY": 90
+    },
+
+    "*-south": {
+      "base": "electricalprogressivecoldstore:block/condensingunit",
+      "rotateY": 0
+    },
+
+    "*-west": {
+      "base": "electricalprogressivecoldstore:block/condensingunit",
+      "rotateY": 270
+    }
+  },
+  "textures": {
+    "metal": { "base": "electricalprogressivecoldstore:block/machine-metal" },
+    "dark": { "base": "electricalprogressivecoldstore:block/machine-dark" },
+    "coil": { "base": "electricalprogressivecoldstore:block/coil" }
+  }
+}

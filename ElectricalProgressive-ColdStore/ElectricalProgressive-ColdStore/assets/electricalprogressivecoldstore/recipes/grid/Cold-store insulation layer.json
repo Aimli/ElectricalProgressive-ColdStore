@@ -1,0 +1,24 @@
+[
+  {
+    "ingredientPattern": "TUT",
+    "ingredients": {
+      "T": {
+        "type": "block",
+        "code": "game:linen-*-down",
+        "quantity": 8
+      },
+      "U": {
+        "type": "item",
+        "code": "game:metalplate-steel",
+        "quantity": 1
+      }
+    },
+    "width": 3,
+    "height": 1,
+    "output": {
+      "type": "block",
+      "code": "electricalprogressivecoldstore:coldstore-insulation",
+      "quantity": 8
+    }
+  }
+]

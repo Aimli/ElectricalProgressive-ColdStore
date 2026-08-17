@@ -1,0 +1,19 @@
+{
+  "$schema": "https://moddbcdn.vintagestory.at/schema/modinfo.latest.json",
+  "type": "Code",
+  "modid": "electricalprogressivecoldstore",
+  "name": "ElectricalProgressive:ColdStore",
+  "authors": [
+    "Aimli_"
+  ],
+  "description": "Build powered, insulated walk-in cold stores with a remote condensing unit, refrigerant piping and room-wide food preservation.",
+  "version": "3.2.20",
+  "side": "Universal",
+  "requiredOnClient": true,
+  "requiredOnServer": true,
+  "dependencies": {
+    "game": "1.22.0",
+    "electricalprogressivecore": "3.3.0",
+    "electricalprogressivebasics": "3.3.0"
+  }
+}

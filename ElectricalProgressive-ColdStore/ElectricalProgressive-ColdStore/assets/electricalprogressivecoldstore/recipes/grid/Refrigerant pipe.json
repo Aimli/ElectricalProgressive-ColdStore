@@ -1,0 +1,36 @@
+[
+  {
+    "ingredientPattern": "SUI,UTU,_U_",
+    "ingredients": {
+      "S": {
+        "type": "item",
+        "code": "electricalprogressivebasics:electricsolderingiron",
+        "isTool": true,
+        "toolDurabilityCost": 5
+      },
+      "T": {
+        "type": "item",
+        "code": "game:metalplate-copper",
+        "quantity": 4
+      },
+      "U": {
+        "type": "item",
+        "code": "game:metalplate-steel",
+        "quantity": 1
+      },
+      "I": {
+        "type": "item",
+        "code": "game:solderbar-*",
+        "quantity": 6,
+        "allowedVariants": [ "tin", "silver" ]
+      }
+    },
+    "width": 3,
+    "height": 3,
+    "output": {
+      "type": "block",
+      "code": "electricalprogressivecoldstore:refrigerantpipe",
+      "quantity": 4
+    }
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "ingredientPattern": "TTT,TUT,TTT",
+    "ingredients": {
+      "T": {
+        "type": "block",
+        "code": "electricalprogressivecoldstore:coldstore-insulation",
+        "quantity": 1
+      },
+      "U": {
+        "type": "block",
+        "code": "game:metaldoor-solid-iron",
+        "quantity": 1
+      }
+    },
+    "width": 3,
+    "height": 3,
+    "output": {
+      "type": "block",
+      "code": "electricalprogressivecoldstore:coldstoredoor",
+      "quantity": 1
+    }
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "ingredientPattern": "SUI,UTU,EUE",
+    "ingredients": {
+      "S": {
+        "type": "item",
+        "code": "electricalprogressivebasics:electricsolderingiron",
+        "isTool": true,
+        "toolDurabilityCost": 5
+      },
+      "T": {
+        "type": "block",
+        "code": "electricalprogressivebasics:emotor-tier3-stator",
+        "quantity": 1
+      },
+      "E": {
+        "type": "item",
+        "code": "electricalprogressivebasics:engineshaft",
+        "quantity": 1
+      },
+      "U": {
+        "type": "item",
+        "code": "game:metalplate-steel",
+        "quantity": 1
+      },
+      "I": {
+        "type": "item",
+        "code": "game:solderbar-*",
+        "quantity": 6,
+        "allowedVariants": [ "tin", "silver" ]
+      }
+    },
+    "width": 3,
+    "height": 3,
+    "output": {
+      "type": "block",
+      "code": "electricalprogressivecoldstore:condensingunit-north",
+      "quantity": 1
+    }
+  }
+]

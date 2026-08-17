@@ -1,0 +1,131 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<!-- Vintage Story 模组必须保持为类库；F5 通过 launchSettings.json 启动游戏。 -->
+		<OutputType>Library</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
+
+		<RootNamespace>ElectricalProgressiveColdStore</RootNamespace>
+		<AssemblyName>ElectricalProgressive-ColdStore</AssemblyName>
+
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<OutputPath>bin\$(Configuration)\</OutputPath>
+
+		<!-- 生成可供 Visual Studio 命中断点的 PDB。 -->
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+
+		<!--
+      可选环境变量：
+      VINTAGE_STORY       = 游戏安装目录
+      VINTAGE_STORY_DATA  = 游戏数据目录；未设置时使用 %APPDATA%\VintagestoryData
+      LOCAL_DEPENDENCIES  = Electrical Progressive 两个 DLL 所在目录
+    -->
+		<VintageStoryData Condition="'$(VINTAGE_STORY_DATA)' != ''">$(VINTAGE_STORY_DATA)</VintageStoryData>
+		<VintageStoryData Condition="'$(VintageStoryData)' == ''">$(APPDATA)\VintagestoryData</VintageStoryData>
+
+		<ModFolderName>ElectricalProgressive ColdStore_3.2.20</ModFolderName>
+		<GameModDirectory>$(VintageStoryData)\Mods\$(ModFolderName)</GameModDirectory>
+
+		<!--
+      依赖目录解析顺序：
+      1. 环境变量 LOCAL_DEPENDENCIES；
+      2. 项目根目录下的 dependencies；
+      3. 兼容旧版 ..\Releases 布局。
+    -->
+		<LocalDependenciesDir Condition="'$(LOCAL_DEPENDENCIES)' != ''">$(LOCAL_DEPENDENCIES)</LocalDependenciesDir>
+		<LocalDependenciesDir Condition="'$(LocalDependenciesDir)' == '' and Exists('$(MSBuildProjectDirectory)\dependencies\ElectricalProgressive-Core.dll')">$(MSBuildProjectDirectory)\dependencies</LocalDependenciesDir>
+
+		<ElectricalProgressiveReleases Condition="'$(ElectricalProgressiveReleases)' == ''">$(MSBuildProjectDirectory)\..\Releases</ElectricalProgressiveReleases>
+
+		<ElectricalProgressiveCoreDll Condition="'$(LocalDependenciesDir)' != ''">$(LocalDependenciesDir)\ElectricalProgressive-Core.dll</ElectricalProgressiveCoreDll>
+		<ElectricalProgressiveCoreDll Condition="'$(ElectricalProgressiveCoreDll)' == ''">$(ElectricalProgressiveReleases)\electricalprogressivecore\ElectricalProgressive-Core.dll</ElectricalProgressiveCoreDll>
+
+		<ElectricalProgressiveBasicsDll Condition="'$(LocalDependenciesDir)' != ''">$(LocalDependenciesDir)\ElectricalProgressive-Basics.dll</ElectricalProgressiveBasicsDll>
+		<ElectricalProgressiveBasicsDll Condition="'$(ElectricalProgressiveBasicsDll)' == ''">$(ElectricalProgressiveReleases)\electricalprogressivebasics\ElectricalProgressive-Basics.dll</ElectricalProgressiveBasicsDll>
+
+		<!-- Debug 构建后自动部署到游戏 Mods 目录。 -->
+		<DeployToVintageStory Condition="'$(DeployToVintageStory)' == ''">true</DeployToVintageStory>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Include 必须使用不同的程序集名称，不能全部写成 VintagestoryAPI。 -->
+		<Reference Include="VintagestoryAPI">
+			<HintPath>$(VINTAGE_STORY)\VintagestoryAPI.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+
+		<Reference Include="VSEssentials">
+			<HintPath>$(VINTAGE_STORY)\Mods\VSEssentials.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+
+		<Reference Include="VSSurvivalMod">
+			<HintPath>$(VINTAGE_STORY)\Mods\VSSurvivalMod.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+
+		<Reference Include="0Harmony">
+			<HintPath>$(VINTAGE_STORY)\Lib\0Harmony.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+
+		<Reference Include="Newtonsoft.Json">
+			<HintPath>$(VINTAGE_STORY)\Lib\Newtonsoft.Json.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+
+		<Reference Include="ElectricalProgressive-Core">
+			<HintPath>$(ElectricalProgressiveCoreDll)</HintPath>
+			<Private>false</Private>
+		</Reference>
+
+		<Reference Include="ElectricalProgressive-Basics">
+			<HintPath>$(ElectricalProgressiveBasicsDll)</HintPath>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="assets\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+
+		<Content Include="modinfo.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+
+		<Content Include="modicon.png" Condition="Exists('modicon.png')">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<!-- 尽早给出清楚的依赖路径错误。 -->
+	<Target Name="ValidateModDevelopmentPaths" BeforeTargets="ResolveReferences">
+		<Error Condition="'$(VINTAGE_STORY)' == ''" Text="未设置 VINTAGE_STORY。请将它设置为 Vintage Story 游戏安装目录，然后重新启动 Visual Studio。" />
+		<Error Condition="!Exists('$(VINTAGE_STORY)\VintagestoryAPI.dll')" Text="找不到 $(VINTAGE_STORY)\VintagestoryAPI.dll，请检查 VINTAGE_STORY。" />
+		<Error Condition="!Exists('$(ElectricalProgressiveCoreDll)')" Text="找不到 ElectricalProgressive-Core.dll。已尝试：$(ElectricalProgressiveCoreDll)。请把 DLL 放入 $(MSBuildProjectDirectory)\dependencies，或设置 LOCAL_DEPENDENCIES。" />
+		<Error Condition="!Exists('$(ElectricalProgressiveBasicsDll)')" Text="找不到 ElectricalProgressive-Basics.dll。已尝试：$(ElectricalProgressiveBasicsDll)。请把 DLL 放入 $(MSBuildProjectDirectory)\dependencies，或设置 LOCAL_DEPENDENCIES。" />
+	</Target>
+
+	<!--
+    F5 前 Visual Studio 会先 Build；这里把本次生成的 DLL、PDB、modinfo 和 assets
+    同步到 Vintage Story 实际读取的 Mods 目录。
+  -->
+	<Target Name="DeployModToVintageStory" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug' and '$(DeployToVintageStory)' == 'true'">
+		<RemoveDir Directories="$(GameModDirectory)" />
+		<MakeDir Directories="$(GameModDirectory)" />
+
+		<ItemGroup>
+			<BuiltModFiles Include="$(TargetDir)**\*" />
+		</ItemGroup>
+
+		<Copy SourceFiles="@(BuiltModFiles)" DestinationFiles="@(BuiltModFiles->'$(GameModDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+		<Message Importance="high" Text="Cold Store 已部署到：$(GameModDirectory)" />
+	</Target>
+
+</Project>
