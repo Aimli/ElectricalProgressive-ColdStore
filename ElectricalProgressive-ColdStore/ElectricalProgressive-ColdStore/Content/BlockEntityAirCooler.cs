@@ -491,7 +491,7 @@ public sealed class BlockEntityAirCooler : BlockEntityEBase
     private float CalculatePerishRate(float temperature, float ambient)
     {
         float minimumTemperature = Block.Attributes?["minimumTemperature"].AsFloat(-50f) ?? -50f;
-        float minimumPerishRate = Block.Attributes?["minimumPerishRate"].AsFloat(0.025f) ?? 0.025f;
+        float minimumPerishRate = global::ElectricalProgressiveColdStore.ConfigIntegration.MinimumPerishRate;
 
         float denominator = Math.Max(1f, ambient - minimumTemperature);
         float progress = GameMath.Clamp((ambient - temperature) / denominator, 0f, 1f);

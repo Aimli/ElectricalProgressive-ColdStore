@@ -1,5 +1,6 @@
 ﻿using System;
 using HarmonyLib;
+using System.Reflection;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 
@@ -32,6 +33,8 @@ public sealed class ElectricalProgressiveColdStoreMod : ModSystem
     {
         base.Start(api);
         this.api = api;
+
+        ConfigIntegration.Initialize(api);
 
         api.RegisterBlockClass("ColdStoreInsulationLayer", typeof(Content.BlockInsulationLayer));
         api.RegisterBlockClass(
@@ -103,6 +106,11 @@ public sealed class ElectricalProgressiveColdStoreMod : ModSystem
             climate.Temperature,
             coldStoreTemperature
         );
+    }
+
+    public override double ExecuteOrder()
+    {
+        return 0.02;
     }
 
     public override void Dispose()
